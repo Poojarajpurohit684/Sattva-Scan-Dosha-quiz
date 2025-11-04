@@ -1,0 +1,36 @@
+-- Create database
+CREATE DATABASE IF NOT EXISTS dosha_quiz;
+USE dosha_quiz;
+
+-- Table: users
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    birthdate DATE NOT NULL,
+    gender ENUM('Male','Female','Other') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table: dosha_info
+CREATE TABLE IF NOT EXISTS dosha_info (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dosha ENUM('Vata','Pitta','Kapha') NOT NULL UNIQUE,
+    description TEXT NOT NULL,
+    dos TEXT NOT NULL,
+    donts TEXT NOT NULL
+);
+
+-- Insert sample dosha data
+INSERT INTO dosha_info (dosha, description, dos, donts) VALUES
+('Vata', 'Vata types are energetic, creative, and quick to adapt but may struggle with anxiety or irregular routines.',
+ 'Eat warm, grounding foods; follow a regular routine; practice calming yoga/meditation.',
+ 'Avoid cold/raw foods, overstimulation, and irregular schedules.'),
+
+('Pitta', 'Pitta types are sharp, ambitious, and focused but may become irritable or overheated.',
+ 'Eat cooling foods; practice relaxation techniques; spend time in nature.',
+ 'Avoid spicy/oily food, excessive heat, and competitive stress.'),
+
+('Kapha', 'Kapha types are calm, strong, and steady but may struggle with sluggishness or weight gain.',
+ 'Do regular exercise; eat light, dry foods; stay mentally engaged.',
+ 'Avoid heavy, oily foods, oversleeping, and lack of movement.');
